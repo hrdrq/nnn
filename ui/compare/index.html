@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/main.css">
+  <title>比價</title>
+</head>
+<body>
+<div id="app">
+  <div id="top">
+    <input v-model="word" @keypress.enter="search" placeholder="輸入商品名稱或型號" autofocus>
+    <button @click="search">查詢</button>
+    設定匯率(台/日)
+    <input v-model="rate">
+  </div>
+  <div id="main">
+    <div class="platform" v-bind:style="{ width: 100/platforms.length+'%' }" v-for="platform in platforms" v-bind:class="platform.country">
+      <div>
+        <img v-bind:src="'img/'+platform.logo">
+      </div>
+      <div class="list">
+        <div v-for="result in platform.results" class="item">
+          <a class="item_link" v-bind:href="result.url">
+            <div>
+              <img class="img" v-bind:src="result.img">
+            </div>
+            <div class="title">{{result.title}}</div>
+            <div class="price">
+              <template v-if="platform.country=='tw'">
+                <div class="price_detail">$<span class="twd">{{result.price}}</span></div>
+                <div v-if="rate" class="price_detail">¥<span class="jpy">{{parseInt(result.price*rate)}}</div>
+                <div v-if="result.price_max">
+                  <div>〜</div>
+                  <div class="price_detail">$<span class="twd">{{result.price_max}}</span></div>
+                  <div v-if="rate" class="price_detail">¥<span class="jpy">{{parseInt(result.price_max*rate)}}</div>
+                </div>
+              </template>
+              <template v-if="platform.country=='jp'">
+                <div v-if="rate" class="price_detail">$<span class="twd">{{parseInt(result.price/rate)}}</span></div>
+                <div class="price_detail">¥<span class="jpy">{{result.price}}</div>
+                <div v-if="result.price_max">
+                  <div>〜</div>
+                  <div v-if="rate" class="price_detail">$<span class="twd">{{parseInt(result.price_max/rate)}}</span></div>
+                  <div class="price_detail">¥<span class="jpy">{{result.price_max}}</div>
+                </div>
+              </template>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- 
+  <div id="left">
+    <table>
+      <tr v-for="(r, index) in data.tw_res">
+        <td><input type="radio" v-bind:value="index" v-model="data.tw_select" @change="profit_calc"></td>
+        <td><img class="img" :src="r.img" /></td>
+        <td>
+          <div><a v-bind:href="r.url" target="_blank">{{r.title}}</a></div>
+          <div v-if="r.price.length == 1">
+            <span>$<span class="twd">{{r.tw_price = parseInt(r.price[0].toString().replace(',',''))}}</span></span>
+            <span v-if="data.rate">¥<span class="jpy">{{parseInt(r.tw_price*data.rate)}}</span></span>
+          </div>
+          <div v-if="r.price.length == 2">
+            <div>
+              <span>$<span class="twd">{{r.tw_price_f = parseInt(r.price[0].toString().replace(',',''))}}</span></span>
+              <span v-if="data.rate">¥<span class="jpy">{{parseInt(r.tw_price_f*data.rate)}}</span></span>
+              　〜　
+              <span>$<span class="twd">{{r.tw_price_t = parseInt(r.price[1].toString().replace(',',''))}}</span></span>
+              <span v-if="data.rate">¥<span class="jpy">{{parseInt(r.tw_price_t*data.rate)}}</span></span>
+            </div>
+            <div>
+              平均：
+              <span>$<span class="twd">{{r.average = parseInt((r.tw_price_f+r.tw_price_t)/2)}}</span></span>
+              <span v-if="data.rate">¥<span class="jpy">{{parseInt(r.average*data.rate)}}</span></span>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div id="right">
+    <table>
+      <tr v-for="(r, index) in data.jp_res">
+        <td><input type="radio" v-bind:value="index" v-model="data.jp_select" @change="profit_calc"></td>
+        <td><img class="img" :src="r.image_url" /></td>
+        <td>
+          <div><a v-bind:href="r.url" target="_blank">{{r.title}}</a></div>
+          <div>
+            <span v-if="data.rate">$<span class="twd">{{parseInt(r.price/data.rate)}}</span></span>
+            <span>¥<span class="jpy">{{r.price}}</span></span>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div> -->
+</div>
+<script src="js/vue.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script src="js/credentials.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

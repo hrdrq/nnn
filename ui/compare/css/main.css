@@ -1,0 +1,43 @@
+td.jp {
+    /*background-color: pink;*/
+}
+td.tw {
+    /*background-color: lightgreen;*/
+}
+
+.platform {
+  float: left;
+  /*width: 14%;*/
+}
+
+.price_detail {
+  display: inline-block;
+}
+
+.list {
+  overflow-y: scroll; 
+  height:600px;
+}
+
+.img {
+    max-width: 120px;
+}
+
+.twd {
+    color: green;
+}
+.jpy {
+    color: red;
+}
+
+a.item_link {
+    color: black;
+    text-decoration: none;
+}
+.title {
+    font-size: 0.3em;
+}
+
+.item {
+    border: 1px solid #000000;  
+}

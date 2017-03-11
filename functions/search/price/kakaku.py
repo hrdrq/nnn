@@ -13,7 +13,7 @@ class Kakaku(object):
           "AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.1.1 Mobile/5B108 "
           "Safari/525.20")
 
-    def search(self, word):
+    def search(self, word, limit=None):
         response = requests.get(self.URL.format(word=word), headers={'User-Agent': self.UA})
         doc = PyQuery(response.text)
 

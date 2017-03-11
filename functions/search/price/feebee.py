@@ -10,7 +10,7 @@ class Feebee(object):
     # URL = 'https://feebee.com.tw/s/?q={word}'
     URL = 'https://feebee.com.tw/s/{word}/?mode=l&s=d'
 
-    def search(self, word):
+    def search(self, word, limit=None):
         response = requests.get(self.URL.format(word=word))
         doc = PyQuery(response.text)
         # print(doc("li.fb-u"))
