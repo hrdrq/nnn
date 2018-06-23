@@ -1,4 +1,5 @@
 # encoding: utf-8
+# yahooの外貨レートAPIを使用し、日本円と台湾ドルのレートを取得
 from __future__ import print_function, unicode_literals
 
 import logging

@@ -1,4 +1,8 @@
 # encoding: utf-8
+# AWS Lambdaにデプロイするメインファイルとなる
+# URLの例：
+# /price?platform=yahoo_jp&word=iphone 7
+
 from __future__ import print_function, unicode_literals
 
 import logging

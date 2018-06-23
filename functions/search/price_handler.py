@@ -1,4 +1,5 @@
 # encoding: utf-8
+# 各サイトの商品値段を取得する
 from __future__ import print_function, unicode_literals
 
 import logging
