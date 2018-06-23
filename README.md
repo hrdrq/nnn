@@ -1,4 +1,4 @@
-日本と台湾の商品相場を調べるツール（APIとUI）
+# 日本と台湾の商品相場を調べるツール（APIとUI）
 
 AWS LambdaとAPI GatewayとS3を使用
 
